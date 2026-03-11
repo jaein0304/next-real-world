@@ -48,7 +48,7 @@ export default function CommentForm({
       defaultValues={init}
       alert={false}
     >
-      <div className='bg-gray-100 border rounded-t-md shadow-sm'>
+      <div className='bg-gray-100 border rounded-t-md shadow-xs'>
         <fieldset className='flex flex-col justify-center mx-auto' aria-live='polite'>
           <FormTextarea<CommentInput> name='body' placeholder='Write a comment...' rows={3} clear />
 

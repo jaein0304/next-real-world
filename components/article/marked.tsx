@@ -8,7 +8,7 @@ interface MarkedProps {
 
 const basicStyle = 'prose prose-stone md:prose-lg lg:prose-xl'; // dark:prose-invert
 const typoStyles = {
-  a: 'prose-a:no-underline prose-a:text-blue-600 hover:prose-a:text-blue-700 hover:prose-a:underline hover:prose-a:underline-offset-auto',
+  a: 'prose-a:no-underline prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-a:hover:underline prose-a:hover:underline-offset-auto',
   headings: 'prose-headings:font-zen',
 };
 const joinMarkedStyles = (className?: string) => joinStylesFromArray(basicStyle, joinStyles(typoStyles), className);

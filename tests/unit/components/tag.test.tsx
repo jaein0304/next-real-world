@@ -20,7 +20,7 @@ describe('Tag', () => {
     expect(tag.className).toContain('text-sm')
   })
 
-  it('applies outline styles when outlined', () => {
+  it('applies outline-solid styles when outlined', () => {
     const { container } = render(<Tag outlined>test</Tag>)
     const tag = container.firstChild as HTMLElement
     expect(tag.className).toContain('text-gray-400')
