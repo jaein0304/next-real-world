@@ -24,25 +24,33 @@ export default function ArticlesViewer({ tabs, isFeedQuery, queryFilter }: Artic
 
   const fallbackMessage = 'Could not load articles... ';
   const noArticlesMessage = 'No articles are here... yet';
-  const [loadArticles, { data: articlesData, fetchMore, networkStatus }] = useArticlesLazyQuery({
+  const [loadArticles, { data: articlesData, error: articlesError, fetchMore, networkStatus }] = useArticlesLazyQuery({
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
-    onError: () => error({ content: fallbackMessage, mode: 'alert' }),
-    onCompleted: (data) => {
-      if (data && data.articles.length === 0) info({ content: noArticlesMessage, mode: 'alert' });
-    },
   });
 
-  const [loadFeed, { data: feedData, fetchMore: fetchMoreFeed, networkStatus: feedNetworkStatus }] = useFeedLazyQuery({
+  const [loadFeed, { data: feedData, error: feedError, fetchMore: fetchMoreFeed, networkStatus: feedNetworkStatus }] = useFeedLazyQuery({
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
-    onError: () => error({ content: fallbackMessage, mode: 'alert' }),
-    onCompleted: (data) => {
-      if (data && data.feed.length === 0) info({ content: noArticlesMessage, mode: 'alert' });
-    },
   });
+
+  useEffect(() => {
+    if (articlesError) error({ content: fallbackMessage, mode: 'alert' });
+  }, [articlesError]);
+
+  useEffect(() => {
+    if (feedError) error({ content: fallbackMessage, mode: 'alert' });
+  }, [feedError]);
+
+  useEffect(() => {
+    if (articlesData && articlesData.articles.length === 0) info({ content: noArticlesMessage, mode: 'alert' });
+  }, [articlesData]);
+
+  useEffect(() => {
+    if (feedData && feedData.feed.length === 0) info({ content: noArticlesMessage, mode: 'alert' });
+  }, [feedData]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -78,12 +86,12 @@ export default function ArticlesViewer({ tabs, isFeedQuery, queryFilter }: Artic
         offset > 0 ? setBottomLoading(true) : setTopLoading(true);
         const { data } = await fetchMoreFeed({ variables: fetchMoreQueryFilter });
         offset > 0 ? setBottomLoading(false) : setTopLoading(false);
-        offset > 0 ? setBottomFetchedSize(data.feed.length) : setTopFetchedSize(data.feed.length);
+        offset > 0 ? setBottomFetchedSize(data?.feed.length ?? 0) : setTopFetchedSize(data?.feed.length ?? 0);
       } else {
         offset > 0 ? setBottomLoading(true) : setTopLoading(true);
         const { data } = await fetchMore({ variables: fetchMoreQueryFilter });
         offset > 0 ? setBottomLoading(false) : setTopLoading(false);
-        offset > 0 ? setBottomFetchedSize(data.articles.length) : setTopFetchedSize(data.articles.length);
+        offset > 0 ? setBottomFetchedSize(data?.articles.length ?? 0) : setTopFetchedSize(data?.articles.length ?? 0);
       }
     },
     [isFeedQuery, fetchMoreFeed, fetchMore, queryFilter]

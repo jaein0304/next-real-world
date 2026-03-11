@@ -1,4 +1,6 @@
-import { ApolloError, useApolloClient } from '@apollo/client';
+import type { ErrorLike } from '@apollo/client';
+import { useApolloClient } from '@apollo/client/react';
+import { CombinedGraphQLErrors } from '@apollo/client/errors';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { usePush } from './use-router-methods';
@@ -20,7 +22,7 @@ enum ServerErrorCode {
 
 interface MessageContext {
   message: Message | null;
-  handleErrors: ({ err, mode }: { err: ApolloError; mode: NotifyType }) => void;
+  handleErrors: ({ err, mode }: { err: ErrorLike; mode: NotifyType }) => void;
   dismiss: () => void;
   dismissing: boolean;
   success: (message: Pick<Message, 'content' | 'mode'>) => void;
@@ -86,25 +88,26 @@ function useProvideMessageHandler() {
   }, []);
 
   const handleErrors = useCallback(
-    ({ err: { graphQLErrors, networkError }, mode }: { err: ApolloError; mode: NotifyType }) => {
+    ({ err, mode }: { err: ErrorLike; mode: NotifyType }) => {
       const reset = async () => {
         handleChangeToken('');
         await client.resetStore();
         push('/login');
       };
 
-      if (graphQLErrors) {
-        for (let err of graphQLErrors) {
-          switch (err.extensions.code) {
+      if (CombinedGraphQLErrors.is(err)) {
+        for (const gqlErr of err.errors) {
+          switch ((gqlErr.extensions as Record<string, unknown>)?.code) {
             case ServerErrorCode.Unauthorized:
               if (token) reset(); // invalid token push to login
               break;
             default:
-              setMessage({ content: err.message, mode, type: 'error' });
+              setMessage({ content: gqlErr.message, mode, type: 'error' });
               break;
           }
         }
-        if (networkError) setMessage({ content: networkError.message, mode, type: 'error' });
+      } else {
+        setMessage({ content: err.message, mode, type: 'error' });
       }
     },
     [token, handleChangeToken, push, client]

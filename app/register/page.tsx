@@ -1,6 +1,5 @@
-'use client';
-
-import { useApolloClient } from '@apollo/client';
+'use client';;
+import { useApolloClient } from "@apollo/client/react";
 import { useRouter } from 'next/navigation';
 import CustomLink from '../../components/common/CustomLink';
 import Form from '../../components/forms/form';
