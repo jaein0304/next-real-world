@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { MessageType, useMessageHandler } from '../../lib/hooks/use-message';
 import { joinStylesFromArray } from '../../lib/utils/styles-builder';

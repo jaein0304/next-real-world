@@ -1,18 +1,18 @@
-import { useApolloClient } from '@apollo/client';
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import CustomLink from '../components/common/CustomLink';
-import Wrapper from '../components/common/wrapper';
-import Form from '../components/forms/form';
-import FormInput from '../components/forms/FormInput';
-import Submit from '../components/forms/submit';
-import { UserSignupInput, useSignupMutation } from '../generated/graphql';
-import guestOnly from '../lib/auth/guest-only';
-import { useMessageHandler } from '../lib/hooks/use-message';
-import { useToken } from '../lib/hooks/use-token';
-import { signupInputSchema } from '../lib/validation/schema';
+'use client';
 
-const Register: NextPage = () => {
+import { useApolloClient } from '@apollo/client';
+import { useRouter } from 'next/navigation';
+import CustomLink from '../../components/common/CustomLink';
+import Form from '../../components/forms/form';
+import FormInput from '../../components/forms/FormInput';
+import Submit from '../../components/forms/submit';
+import { UserSignupInput, useSignupMutation } from '../../generated/graphql';
+import guestOnlyApp from '../../lib/auth/guest-only-app';
+import { useMessageHandler } from '../../lib/hooks/use-message';
+import { useToken } from '../../lib/hooks/use-token';
+import { signupInputSchema } from '../../lib/validation/schema';
+
+const Register = () => {
   const router = useRouter();
   const client = useApolloClient();
   const { handleChangeToken } = useToken();
@@ -34,7 +34,7 @@ const Register: NextPage = () => {
   }
   const init: UserSignupInput = { email: '', password: '', username: '' };
   return (
-    <Wrapper title='Sign up'>
+    <div className='flex-2 mt-14 md:mt-12'>
       <div className='container flex flex-wrap flex-col items-center mx-auto pt-12'>
         <h1 className='text-4xl font-extralight'>Sign up</h1>
         <p className='mt-4'>
@@ -56,8 +56,8 @@ const Register: NextPage = () => {
           </Form>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 
-export default guestOnly(Register);
+export default guestOnlyApp(Register);

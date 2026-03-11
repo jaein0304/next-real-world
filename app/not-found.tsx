@@ -1,10 +1,10 @@
-import { NextPage } from 'next';
-import CustomLink from '../components/common/CustomLink';
-import Wrapper from '../components/common/wrapper';
+'use client';
 
-const Custom404: NextPage = () => {
+import CustomLink from '../components/common/CustomLink';
+
+export default function NotFound() {
   return (
-    <Wrapper title='Not found'>
+    <div className='flex-2 mt-14 md:mt-12'>
       <div className='container flex flex-col items-center mx-auto space-y-2 mt-24'>
         <h1 className='text-6xl font-light'>404</h1>
         <p>
@@ -14,8 +14,6 @@ const Custom404: NextPage = () => {
         </p>
         <p className='text-center'>Sorry, the content you are looking for could not be found.</p>
       </div>
-    </Wrapper>
+    </div>
   );
-};
-
-export default Custom404;
+}

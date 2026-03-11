@@ -50,28 +50,28 @@
 
 ## 7. Next.js 15 마이그레이션 (Phase 4-2)
 
-- [ ] 7.1 feature/nextjs-15 브랜치 생성
-- [ ] 7.2 Next.js 15, React 19로 패키지 업그레이드
-- [ ] 7.3 Async API 변환 — params, searchParams, cookies, headers를 async/await로 수정
-- [ ] 7.4 fetch 캐싱 기본값 변경 대응 (필요 시 캐시 옵션 명시)
-- [ ] 7.5 빌드 확인 및 전체 테스트 실행
-- [ ] 7.6 PR 생성 및 CI 통과 확인 후 머지
+- [x] 7.1 feature/nextjs-15 브랜치 생성
+- [x] 7.2 Next.js 15, React 19로 패키지 업그레이드
+- [x] 7.3 Async API 변환 — Pages Router에서는 불필요 (App Router 전환 시 적용)
+- [x] 7.4 fetch 캐싱 기본값 변경 대응 — Pages Router에서는 영향 없음
+- [x] 7.5 빌드 확인 및 전체 테스트 실행
+- [x] 7.6 PR 생성 및 CI 통과 확인 후 머지
 
 ## 8. App Router 전환 (Phase 4-3)
 
-- [ ] 8.1 feature/app-router 브랜치 생성
-- [ ] 8.2 app/layout.tsx 생성 — 공통 레이아웃 (Header, Footer, Providers)
-- [ ] 8.3 pages/404.tsx → app/not-found.tsx 전환
-- [ ] 8.4 pages/login.tsx → app/login/page.tsx 전환
-- [ ] 8.5 pages/register.tsx → app/register/page.tsx 전환
-- [ ] 8.6 pages/settings.tsx → app/settings/page.tsx 전환
-- [ ] 8.7 pages/profile/[username].tsx → app/profile/[username]/page.tsx 전환
-- [ ] 8.8 pages/article/[slug].tsx → app/article/[slug]/page.tsx 전환
-- [ ] 8.9 pages/editor/ → app/editor/ 전환
-- [ ] 8.10 pages/index.tsx → app/page.tsx 전환 (가장 복잡, 마지막)
-- [ ] 8.11 pages/api/index.ts → app/api/route.ts (GraphQL 엔드포인트) 전환
-- [ ] 8.12 pages/_app.tsx 제거 (layout.tsx로 완전 대체 확인 후)
-- [ ] 8.13 전체 테스트 실행 및 PR 생성
+- [x] 8.1 feature/nextjs-14 브랜치에서 작업 (기존 브랜치 재활용)
+- [x] 8.2 app/layout.tsx 생성 — 공통 레이아웃 (Header, Footer, Providers, Suspense)
+- [x] 8.3 pages/404.tsx → app/not-found.tsx 전환
+- [x] 8.4 pages/login.tsx → app/login/page.tsx 전환
+- [x] 8.5 pages/register.tsx → app/register/page.tsx 전환
+- [x] 8.6 pages/settings.tsx → app/settings/page.tsx 전환
+- [x] 8.7 pages/profile/[username].tsx → app/profile/[username]/page.tsx 전환
+- [x] 8.8 pages/article/[slug].tsx → app/article/[slug]/page.tsx 전환
+- [x] 8.9 pages/editor/ → app/editor/ 전환
+- [x] 8.10 pages/index.tsx → app/page.tsx 전환
+- [x] 8.11 pages/api/index.ts는 Pages Router에 유지 (Apollo Server micro는 Route Handler 미지원)
+- [x] 8.12 pages/_app.tsx 유지 (pages/api 존재로 필요, 하지만 실제 렌더링 없음)
+- [x] 8.13 전체 빌드 및 테스트 통과 확인 — next/router → next/navigation 마이그레이션 완료
 
 ## 9. 의존성 현대화 (Phase 4-4)
 

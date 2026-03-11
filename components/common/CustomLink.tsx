@@ -1,5 +1,5 @@
 import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { joinStylesFromArray } from '../../lib/utils/styles-builder';
 
@@ -70,7 +70,9 @@ export default function CustomLink({
   children,
   ...props
 }: CustomLinkProps) {
-  const { asPath } = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const asPath = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`;
   const active = decodeURIComponent(asPath) === decodeURIComponent(href as string);
   return (
     <Link

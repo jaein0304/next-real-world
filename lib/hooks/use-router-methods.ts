@@ -1,26 +1,28 @@
-import type { NextRouter } from 'next/router';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 
-export function usePush(): NextRouter['push'] {
+type PushFn = (path: string) => void;
+type ReplaceFn = (path: string) => void;
+
+export function usePush(): PushFn {
   const router = useRouter();
   const routerRef = useRef(router);
 
   routerRef.current = router;
 
-  const [{ push }] = useState<Pick<NextRouter, 'push'>>({
+  const [{ push }] = useState<{ push: PushFn }>({
     push: (path) => routerRef.current.push(path),
   });
   return push;
 }
 
-export function useReplace(): NextRouter['replace'] {
+export function useReplace(): ReplaceFn {
   const router = useRouter();
   const routerRef = useRef(router);
 
   routerRef.current = router;
 
-  const [{ replace }] = useState<Pick<NextRouter, 'replace'>>({
+  const [{ replace }] = useState<{ replace: ReplaceFn }>({
     replace: (path) => routerRef.current.replace(path),
   });
   return replace;

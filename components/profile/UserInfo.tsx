@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Profile } from '../../generated/graphql';
 import { useCurrentUser } from '../../lib/hooks/use-current-user';
 import CustomButton from '../common/CustomButton';

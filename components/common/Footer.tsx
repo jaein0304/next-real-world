@@ -1,3 +1,5 @@
+'use client';
+
 import CustomLink from './CustomLink';
 
 export default function Footer() {

@@ -1,5 +1,5 @@
 import { ApolloError, useApolloClient } from '@apollo/client';
-import { useRouter } from 'next/router';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { usePush } from './use-router-methods';
 import { useToken } from './use-token';
@@ -54,7 +54,9 @@ function useProvideMessageHandler() {
   const { token, handleChangeToken } = useToken();
   const client = useApolloClient();
   const push = usePush();
-  const { asPath } = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const asPath = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`;
   const [dismissing, setDismissing] = useState<boolean>(false);
 
   useEffect(() => {

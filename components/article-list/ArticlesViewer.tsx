@@ -1,5 +1,5 @@
 import { NetworkStatus } from '@apollo/client';
-import { useRouter } from 'next/router';
+import { usePathname, useSearchParams } from 'next/navigation';
 import * as R from 'ramda';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ArticlesQueryVariables, useArticlesLazyQuery, useFeedLazyQuery } from '../../generated/graphql';
@@ -18,7 +18,9 @@ interface ArticleListProps {
 
 export default function ArticlesViewer({ tabs, isFeedQuery, queryFilter }: ArticleListProps) {
   const { error, info } = useMessageHandler();
-  const { asPath } = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const asPath = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`;
 
   const fallbackMessage = 'Could not load articles... ';
   const noArticlesMessage = 'No articles are here... yet';

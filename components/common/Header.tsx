@@ -1,3 +1,5 @@
+'use client';
+
 import * as R from 'ramda';
 import { useState } from 'react';
 import { useCurrentUser } from '../../lib/hooks/use-current-user';

@@ -1,24 +1,26 @@
-import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
+'use client';
+
+import { useSearchParams } from 'next/navigation';
 import * as R from 'ramda';
 import { useEffect, useState } from 'react';
 import ArticlesViewer from '../components/article-list/ArticlesViewer';
 import { TabProps } from '../components/common/Tab';
-import Wrapper from '../components/common/wrapper';
 import HomeBanner from '../components/home/Banner';
 import HomeSidebar from '../components/home/Sidebar';
 import { ArticlesQueryVariables } from '../generated/graphql';
 import { useCurrentUser } from '../lib/hooks/use-current-user';
 
-const Home: NextPage = () => {
-  const router = useRouter();
-  const { feed, tag } = useRouter().query as { feed?: string; tag?: string };
+export default function Home() {
+  const searchParams = useSearchParams();
+  const feed = searchParams?.get('feed') ?? null;
+  const tag = searchParams?.get('tag') ?? null;
   const [tabs, setTabs] = useState<TabProps[]>([]);
   const { user, loading } = useCurrentUser();
   const [isFeedQuery, setFeedQuery] = useState<boolean>(false);
   const [queryFilter, setQueryFilter] = useState<ArticlesQueryVariables>({});
+
   useEffect(() => {
-    if (router.isReady && !loading) {
+    if (!loading) {
       setFeedQuery(!!user && !!feed);
       setQueryFilter(tag ? { tag } : {});
       setTabs(
@@ -29,10 +31,10 @@ const Home: NextPage = () => {
         ])
       );
     }
-  }, [feed, tag, user, router.isReady, loading]);
+  }, [feed, tag, user, loading]);
 
   return (
-    <Wrapper title='Home'>
+    <div className='flex-2 mt-14 md:mt-12'>
       <HomeBanner />
       <div className='container flex flex-col-reverse justify-center mt-8 mx-auto md:flex-row'>
         <main className='basis-9/12 shrink-0'>
@@ -42,8 +44,6 @@ const Home: NextPage = () => {
           <HomeSidebar />
         </aside>
       </div>
-    </Wrapper>
+    </div>
   );
-};
-
-export default Home;
+}

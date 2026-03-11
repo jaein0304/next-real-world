@@ -1,14 +1,15 @@
-import Wrapper from '../../components/common/wrapper';
+'use client';
+
 import ArticleEditor from '../../components/editor/ArticleEditor';
 import { AuthUser } from '../../generated/graphql';
-import withAuth from '../../lib/auth/with-auth';
+import withAuthApp from '../../lib/auth/with-auth-app';
 
 const NewArticle = ({ user }: { user: AuthUser }) => {
   return (
-    <Wrapper title='New article'>
+    <div className='flex-2 mt-14 md:mt-12'>
       <ArticleEditor {...{ user }} />
-    </Wrapper>
+    </div>
   );
 };
 
-export default withAuth(NewArticle);
+export default withAuthApp(NewArticle);

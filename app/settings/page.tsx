@@ -1,15 +1,16 @@
+'use client';
+
 import { useApolloClient } from '@apollo/client';
-import CustomButton from '../components/common/CustomButton';
-import Wrapper from '../components/common/wrapper';
-import Form from '../components/forms/form';
-import FormTextarea from '../components/forms/form-teextarea';
-import FormInput from '../components/forms/FormInput';
-import Submit from '../components/forms/submit';
-import { AuthUser, ProfileDocument, UserUpdateInput, useUpdateUserMutation } from '../generated/graphql';
-import withAuth from '../lib/auth/with-auth';
-import { useMessageHandler } from '../lib/hooks/use-message';
-import { useToken } from '../lib/hooks/use-token';
-import { useCheckUser } from '../lib/hooks/use-validation';
+import CustomButton from '../../components/common/CustomButton';
+import Form from '../../components/forms/form';
+import FormTextarea from '../../components/forms/form-teextarea';
+import FormInput from '../../components/forms/FormInput';
+import Submit from '../../components/forms/submit';
+import { AuthUser, ProfileDocument, UserUpdateInput, useUpdateUserMutation } from '../../generated/graphql';
+import withAuthApp from '../../lib/auth/with-auth-app';
+import { useMessageHandler } from '../../lib/hooks/use-message';
+import { useToken } from '../../lib/hooks/use-token';
+import { useCheckUser } from '../../lib/hooks/use-validation';
 
 const Settings = ({ user }: { user: AuthUser }) => {
   const client = useApolloClient();
@@ -37,7 +38,7 @@ const Settings = ({ user }: { user: AuthUser }) => {
   const { username, email, bio, image } = user;
   const init: UserUpdateInput = { username, email, bio: bio ?? '', image: image ?? '', password: '' };
   return (
-    <Wrapper title='Settings'>
+    <div className='flex-2 mt-14 md:mt-12'>
       <div className='container flex flex-wrap flex-col items-center mx-auto pt-12'>
         <h1 className='text-4xl font-extralight'>Your Settings</h1>
         <div className='w-full sm:w-10/12 md:w-8/12 lg:w-6/12'>
@@ -72,8 +73,8 @@ const Settings = ({ user }: { user: AuthUser }) => {
           </CustomButton>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 
-export default withAuth(Settings);
+export default withAuthApp(Settings);
