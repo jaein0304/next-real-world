@@ -34,11 +34,11 @@ export default function ArticleComment({ comment }: { comment: CommentViewFragme
   }
 
   return (
-    <div className='border rounded-sm shadow-sm mb-2'>
+    <div className='border rounded-xs shadow-xs mb-2'>
       <div className='p-4'>
         <p className=''>{body}</p>
       </div>
-      <div className='bg-gray-100 py-2 px-4 border shadow-sm'>
+      <div className='bg-gray-100 py-2 px-4 border shadow-xs'>
         <div className='flex flex-wrap items-center justify-between mx-auto'>
           <ArticleAuthorInfo authorInfo={authorInfo} inlined />
           {user && user.username === username && (
