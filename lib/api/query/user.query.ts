@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { User } from '../../../generated/prisma/client';
 import { nonNull, queryType, stringArg } from 'nexus';
 import { Context } from '../context';
 

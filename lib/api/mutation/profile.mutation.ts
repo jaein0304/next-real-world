@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../../../generated/prisma/client';
 import { UserInputError } from 'apollo-server-micro';
 import { extendType, nonNull, stringArg } from 'nexus';
 import { Context } from '../context';

@@ -1,4 +1,5 @@
-import { ApolloClient, ApolloLink, ApolloProvider } from '@apollo/client';
+import { ApolloClient, ApolloLink } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import { setContext } from '@apollo/client/link/context';
 import React, { useMemo, useRef } from 'react';
 import { cache } from '../cache';
@@ -7,7 +8,7 @@ import { useToken } from './use-token';
 
 export function CustomApolloProvider({ children }: { children: React.ReactNode }) {
   const { token } = useToken();
-  const tokenRef = useRef<string>();
+  const tokenRef = useRef<string>('');
 
   // Whenever the token changes, the component re-renders, thus updating the ref.
   tokenRef.current = token;
@@ -23,8 +24,10 @@ export function CustomApolloProvider({ children }: { children: React.ReactNode }
 
     return new ApolloClient({
       link: ApolloLink.from([errorLink, authLink, cacheLink, httpLink]),
-      connectToDevTools: process.env.NODE_ENV === 'development',
       cache,
+      devtools: {
+        enabled: process.env.NODE_ENV === 'development',
+      },
     });
   }, []);
 

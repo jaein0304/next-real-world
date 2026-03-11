@@ -20,7 +20,7 @@ interface CustomInputProps extends CommonInputProps {
 }
 
 export const inputConfig = {
-  basic: 'rounded-md border focus:outline-none focus:ring-4 focus:ring-opacity-50',
+  basic: 'rounded-md border focus:outline-hidden focus:ring-4 focus:ring-opacity-50',
   disabled: 'cursor-not-allowed focus:ring-0',
   mode: {
     default: 'text-gray-900 bg-gray-50 border-gray-300 focus:border-primary focus:ring-primary-300',

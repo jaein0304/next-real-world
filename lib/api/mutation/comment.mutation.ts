@@ -1,4 +1,4 @@
-import { Comment } from '@prisma/client';
+import { Comment } from '../../../generated/prisma/client';
 import { AuthenticationError, UserInputError } from 'apollo-server-micro';
 import { arg, extendType, intArg, nonNull, stringArg } from 'nexus';
 import { commentInputSchema } from '../../validation/schema';

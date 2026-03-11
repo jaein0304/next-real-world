@@ -1,3 +1,5 @@
+'use client';
+
 import * as R from 'ramda';
 import { useState } from 'react';
 import { useCurrentUser } from '../../lib/hooks/use-current-user';
@@ -30,7 +32,7 @@ export default function Header() {
         <button
           onClick={toggleExpand()}
           type='button'
-          className='inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 '
+          className='inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-gray-200 '
           aria-controls='navbar-default'
           aria-expanded={ariaExpanded}
         >

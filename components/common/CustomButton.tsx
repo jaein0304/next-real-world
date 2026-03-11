@@ -24,11 +24,11 @@ export type ButtonProps = Partial<{
   Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, 'color'>;
 
 const buttonConfig = {
-  shape: 'rounded border appearance-none',
+  shape: 'rounded-sm border appearance-none',
   focus: 'focus:ring-4 focus:ring-opacity-50',
   active: 'active:ring-4 active:ring-opacity-50',
   activeFocus: 'active:focus:ring-4 active:focus:ring-opacity-50',
-  disabled: 'rounded border disabled:cursor-not-allowed disabled:ring-0',
+  disabled: 'rounded-sm border disabled:cursor-not-allowed disabled:ring-0',
 };
 
 const buttonColorConfig: {

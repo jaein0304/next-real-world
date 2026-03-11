@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { User } from '../../../generated/prisma/client';
 import { inputObjectType, objectType } from 'nexus';
 import { Context } from '../context';
 
@@ -32,7 +32,7 @@ const Article = objectType({
             where: { slug },
           })
           .favoritedBy({ select: { favoritedBy: true }, where: { userId: context.currentUser.id } });
-        return !!favorites.length;
+        return !!favorites?.length;
       },
     });
     t.nonNull.list.nonNull.string('tagList', {
@@ -42,7 +42,7 @@ const Article = objectType({
             where: { slug },
           })
           .tags({ select: { tag: { select: { name: true } } } });
-        return tags.map((t) => t.tag.name);
+        return (tags ?? []).map((t) => t.tag.name);
       },
     });
   },

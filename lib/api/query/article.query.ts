@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../../../generated/prisma/client';
 import { extendType, intArg, nonNull, stringArg } from 'nexus';
 import { Context } from '../context';
 
@@ -118,27 +118,23 @@ const ArticleQuery = extendType({
   },
 });
 
-const articleQueryFilter = (query: any) => {
-  return Prisma.validator<Prisma.ArticleWhereInput>()({
-    AND: [
-      { del: false },
-      { author: { username: query?.author } },
-      { tags: { some: query?.tag && { tag: { name: query.tag } } } },
-      {
-        favoritedBy: {
-          // this "some" operator somehow could not work with the nested undefined value in an "AND" array
-          some: query?.favorited && { favoritedBy: { username: query.favorited } },
-        },
+const articleQueryFilter = (query: any): Prisma.ArticleWhereInput => ({
+  AND: [
+    { del: false },
+    { author: { username: query?.author } },
+    { tags: { some: query?.tag && { tag: { name: query.tag } } } },
+    {
+      favoritedBy: {
+        // this "some" operator somehow could not work with the nested undefined value in an "AND" array
+        some: query?.favorited && { favoritedBy: { username: query.favorited } },
       },
-    ],
-  });
-};
+    },
+  ] as Prisma.ArticleWhereInput[],
+});
 
-const feedQueryFilter = (userId: number) => {
-  return Prisma.validator<Prisma.ArticleWhereInput>()({
-    del: false,
-    author: { followedBy: { some: { followerId: userId } } },
-  });
-};
+const feedQueryFilter = (userId: number): Prisma.ArticleWhereInput => ({
+  del: false,
+  author: { followedBy: { some: { followerId: userId } } },
+});
 
 export default ArticleQuery;

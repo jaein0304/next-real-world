@@ -1,9 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormProvider, SubmitHandler, useForm, UseFormProps } from 'react-hook-form';
+import { FieldValues, FormProvider, SubmitHandler, useForm, UseFormProps } from 'react-hook-form';
 import { AnyObjectSchema } from 'yup';
 import Alert from '../common/alert';
 
-type FormProps<TFormValues> = {
+type FormProps<TFormValues extends FieldValues> = {
   onSubmit: SubmitHandler<TFormValues>;
   children: React.ReactNode;
   schema?: AnyObjectSchema;

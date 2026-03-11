@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { FeedDocument, Profile, useFollowMutation, useUnFollowMutation } from '../../generated/graphql';
 import { ARTICLES_PAGE_SIZE } from '../../lib/constants';
 import { useCurrentUser } from '../../lib/hooks/use-current-user';

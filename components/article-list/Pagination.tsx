@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { range } from 'ramda';
 import CustomLink from '../common/CustomLink';
 
@@ -13,7 +13,9 @@ export function Pagination({
   itemsPerPage: number;
   onPageChange?: (index: number) => void;
 }) {
-  const { asPath } = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const asPath = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`;
   return (
     <nav>
       <ul className='pagination'>

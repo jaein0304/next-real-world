@@ -4,6 +4,7 @@ import {
   AuthUser,
   CommentInput,
   CommentsDocument,
+  CommentsQuery,
   useCreateCommentMutation,
 } from '../../generated/graphql';
 import { useMessageHandler } from '../../lib/hooks/use-message';
@@ -26,8 +27,8 @@ export default function CommentForm({
     update(cache, { data }) {
       if (data) {
         const newComment = data.createComment;
-        cache.updateQuery({ query: CommentsDocument, variables: { articleId: article.id } }, (data) => ({
-          comments: R.prepend(newComment, data.comments),
+        cache.updateQuery<CommentsQuery>({ query: CommentsDocument, variables: { articleId: article.id } }, (data) => ({
+          comments: R.prepend(newComment, data?.comments ?? []),
         }));
       }
     },
@@ -47,7 +48,7 @@ export default function CommentForm({
       defaultValues={init}
       alert={false}
     >
-      <div className='bg-gray-100 border rounded-t-md shadow-sm'>
+      <div className='bg-gray-100 border rounded-t-md shadow-xs'>
         <fieldset className='flex flex-col justify-center mx-auto' aria-live='polite'>
           <FormTextarea<CommentInput> name='body' placeholder='Write a comment...' rows={3} clear />
 
