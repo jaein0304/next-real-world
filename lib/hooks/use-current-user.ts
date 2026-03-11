@@ -7,11 +7,13 @@ export function useCurrentUser() {
   const { token } = useToken();
   const { handleErrors } = useMessageHandler();
   const [loading, setLoading] = useState<boolean>(true);
-  const [loadCurrentUser, { data }] = useCurrentUserLazyQuery({
+  const [loadCurrentUser, { data, error: queryError }] = useCurrentUserLazyQuery({
     fetchPolicy: 'cache-first',
     nextFetchPolicy: 'cache-only',
-    onError: (err) => handleErrors({ err, mode: 'none' }),
   });
+  useEffect(() => {
+    if (queryError) handleErrors({ err: queryError, mode: 'none' });
+  }, [queryError, handleErrors]);
   useEffect(() => {
     const loadData = async () => {
       if (token) await loadCurrentUser();

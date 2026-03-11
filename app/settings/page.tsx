@@ -1,6 +1,5 @@
-'use client';
-
-import { useApolloClient } from '@apollo/client';
+'use client';;
+import { useApolloClient } from "@apollo/client/react";
 import CustomButton from '../../components/common/CustomButton';
 import Form from '../../components/forms/form';
 import FormTextarea from '../../components/forms/form-teextarea';

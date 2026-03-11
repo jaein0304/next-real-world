@@ -22,7 +22,7 @@
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.9",
+    "@apollo/client": "4",
     "@graphql-codegen/cli": "^2.7.0",
     "@graphql-codegen/typescript": "2.6.0",
     "@graphql-codegen/typescript-operations": "2.4.3",
@@ -50,6 +50,7 @@
     "react": "19",
     "react-dom": "19",
     "react-hook-form": "^7.33.1",
+    "rxjs": "^7.8.2",
     "slug": "^5.3.0",
     "usehooks-ts": "^2.6.0",
     "yup": "^0.32.11"

@@ -1,5 +1,5 @@
 import { NetworkStatus } from '@apollo/client';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ArticleViewFragment, useCommentsQuery } from '../../generated/graphql';
 import { COMMENTS_PAGE_SIZE } from '../../lib/constants';
 import { useCurrentUser } from '../../lib/hooks/use-current-user';
@@ -16,16 +16,20 @@ export default function CommentSection({ article }: { article: ArticleViewFragme
 
   const fallbackMessage = 'Could not load comments... ';
   const noArticlesMessage = 'No comments here... yet';
-  const { data, fetchMore, networkStatus } = useCommentsQuery({
+  const { data, error: queryError, fetchMore, networkStatus } = useCommentsQuery({
     variables: { articleId: article.id, offset: 0, limit: COMMENTS_PAGE_SIZE },
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
-    onError: () => error({ content: fallbackMessage, mode: 'toast' }),
-    onCompleted: (data) => {
-      if (data && data.comments.length === 0) info({ content: noArticlesMessage, mode: 'none' });
-    },
   });
+
+  useEffect(() => {
+    if (queryError) error({ content: fallbackMessage, mode: 'toast' });
+  }, [queryError]);
+
+  useEffect(() => {
+    if (data && data.comments.length === 0) info({ content: noArticlesMessage, mode: 'none' });
+  }, [data]);
 
   const comments = data?.comments;
   const last = comments && comments.length && comments[data.comments.length - 1].id;
@@ -38,7 +42,7 @@ export default function CommentSection({ article }: { article: ArticleViewFragme
       const { data } = await fetchMore({
         variables: { articleId: article.id, offset, cursor, limit: COMMENTS_PAGE_SIZE },
       });
-      setFetchedSize(data.comments.length);
+      setFetchedSize(data?.comments.length ?? 0);
     },
     [article, fetchMore]
   );
