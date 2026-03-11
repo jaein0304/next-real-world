@@ -94,6 +94,10 @@ Prefixes: `feat:`, `fix:`, `test:`, `chore:`, `docs:`, `refactor:`
 
 Branch naming: `feature/*`, `fix/*`, `chore/*` → PR to `main`
 
+## Work Rules
+
+- 독립적인 작업은 Agent를 활용해 최대한 병렬로 수행한다 (예: 서로 다른 테스트 작성, 독립 브랜치 작업, 리서치 등)
+
 ## Code Style
 
 - Prettier: `printWidth: 120`, `singleQuote: true`, `jsxSingleQuote: true`
