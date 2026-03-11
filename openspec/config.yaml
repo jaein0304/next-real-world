@@ -1,0 +1,53 @@
+schema: spec-driven
+
+context: |
+  ## Tech Stack
+  - Frontend: Next.js 12.2 (Pages Router), React 18.2, TypeScript 4.7.4
+  - Backend: Apollo Server (micro), Nexus (code-first GraphQL), Prisma 4 (MySQL)
+  - State: Apollo Client 3.6 (InMemoryCache, cursor-based pagination)
+  - Styling: Tailwind CSS 3.1, @tailwindcss/typography
+  - Auth: JWT RS256, localStorage token, Bearer header
+  - Validation: Yup (client-server shared), React Hook Form
+  - Tools: ESLint (next/core-web-vitals), Prettier, Husky pre-commit
+
+  ## Architecture
+  - Single GraphQL endpoint at /api (Apollo Server micro)
+  - Nexus code-first schema → generated types + SDL
+  - 7 Prisma models: User, Article, Comment, Tag, Favorites, Follows, ArticlesTags
+  - 11 pages (Pages Router), 58 components, 8 custom hooks
+  - Soft delete pattern (del boolean field on Article, Comment)
+  - Two Apollo Client instances: SSR (default export) + CSR (CustomApolloProvider)
+
+  ## Key Directories
+  - pages/ — Next.js file-based routing
+  - components/ — Feature-based React components (article, article-list, common, editor, forms, home, profile)
+  - lib/api/ — GraphQL schema, resolvers, types, mutations, queries
+  - lib/hooks/ — Custom hooks (token, apollo, message, current-user, form-callback, router, previous, validation)
+  - lib/schemas/ — Client GraphQL operations (.graphql files)
+  - lib/validation/ — Shared Yup validation schemas
+  - prisma/ — Database schema
+  - generated/ — Auto-generated Nexus types + GraphQL client code (do not edit)
+  - openspec/specs/ — Project capability specifications
+
+  ## Conventions
+  - Prettier: printWidth 120, singleQuote, jsxSingleQuote
+  - Commit: Conventional Commits (feat:, fix:, test:, chore:, docs:)
+  - Branch: main (production) ← feature/*, fix/*, chore/*
+  - Code gen order: Prisma → Nexus → GraphQL codegen
+
+  ## Project Purpose
+  - Learning project (RealWorld Conduit blog app)
+  - Solo developer + AI pair programming (vibe coding)
+  - Spec-driven development via OpenSpec
+
+rules:
+  proposal:
+    - Keep proposals under 500 words
+    - Always include a "Non-goals" section
+  tasks:
+    - Break tasks into chunks completable in one session
+    - Each task should be verifiable
+  specs:
+    - Use SHALL/MUST for normative requirements
+    - Every requirement MUST have at least one WHEN/THEN scenario
+    - Scenarios should be directly convertible to test cases

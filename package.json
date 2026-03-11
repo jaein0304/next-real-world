@@ -14,7 +14,12 @@
     "generate:nexus": "ts-node --transpile-only lib/api/schema",
     "generate:jwk": "node gen-jwk",
     "generate:graphql": "graphql-codegen --config .graphql-codegen.yml",
-    "build:anl": "ANALYZE=true next build"
+    "build:anl": "ANALYZE=true next build",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -52,12 +57,17 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.2.3",
+    "@playwright/test": "^1.58.2",
     "@sls-next/aws-cloudfront": "^3.7.0",
     "@sls-next/aws-lambda": "^3.7.0",
     "@sls-next/aws-sqs": "^3.7.0",
     "@sls-next/domain": "^3.7.0",
     "@sls-next/serverless-component": "^3.7.0",
     "@tailwindcss/typography": "^0.5.4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/crypto-hash": "^1.1.2",
     "@types/date-fns": "^2.6.0",
@@ -73,6 +83,8 @@
     "@types/slug": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "@vitest/coverage-v8": "^4.0.18",
     "autoprefixer": "^10.4.7",
     "cssnano": "^5.1.12",
     "eslint": "8.19.0",
@@ -80,6 +92,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jose": "^4.8.3",
+    "jsdom": "^28.1.0",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prisma": "^4.0.0",
@@ -87,7 +100,9 @@
     "serverless": "2.72.2",
     "tailwindcss": "^3.1.6",
     "ts-node": "10.8.1",
-    "typescript": "4.7.4"
+    "typescript": "4.7.4",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "graphql": "^16.5.0",
