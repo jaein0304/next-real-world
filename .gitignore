@@ -119,3 +119,4 @@ blob-report/
 
 # Test DB
 test.db
+.omc/
