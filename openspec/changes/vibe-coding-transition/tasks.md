@@ -75,7 +75,7 @@
 
 ## 9. 의존성 현대화 (Phase 4-4)
 
-- [ ] 9.1 feature/prisma-7 브랜치 — Prisma 7 업그레이드 (ESM, 드라이버 어댑터, prisma.config.ts)
-- [ ] 9.2 feature/apollo-4 브랜치 — Apollo Client 4 업그레이드 (코드모드 실행, 캐시 검증)
-- [ ] 9.3 feature/tailwind-4 브랜치 — Tailwind CSS 4 업그레이드 (자동 마이그레이션 도구, UI 검증)
-- [ ] 9.4 각 브랜치별 전체 테스트 통과 확인 후 순차적 머지
+- [x] 9.1 feature/prisma-7 브랜치 — Prisma 7 업그레이드 (ESM, 드라이버 어댑터, prisma.config.ts) → PR #9
+- [x] 9.2 feature/apollo-4 브랜치 — Apollo Client 4 업그레이드 (코드모드 실행, 캐시 검증) → PR #10
+- [x] 9.3 feature/tailwind-4 브랜치 — Tailwind CSS 4 업그레이드 (자동 마이그레이션 도구, UI 검증) → PR #11
+- [x] 9.4 각 브랜치별 전체 테스트 통과 확인 후 순차적 머지 — 빌드 통과, 6/6 테스트 통과
