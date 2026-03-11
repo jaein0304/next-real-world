@@ -27,7 +27,8 @@ test.describe('Articles', () => {
       const globalFeedTab = page.locator('text=Global Feed')
       await expect(globalFeedTab).toBeVisible()
       await globalFeedTab.click()
-      await expect(page).toHaveURL(/^\/$|\/\?/)
+      // Should stay on home page after clicking Global Feed
+      await expect(page).toHaveURL(/localhost:3000\/?(\?.*)?$/)
     })
   })
 

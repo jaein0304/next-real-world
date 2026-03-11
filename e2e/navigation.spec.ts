@@ -4,7 +4,7 @@ test.describe('Navigation', () => {
   test('homepage loads with conduit branding', async ({ page }) => {
     await page.goto('/')
     await expect(page).toHaveTitle(/conduit/i)
-    await expect(page.locator('text=conduit')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'conduit' })).toBeVisible()
   })
 
   test('homepage shows Global Feed tab', async ({ page }) => {
