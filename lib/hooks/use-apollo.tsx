@@ -7,7 +7,7 @@ import { useToken } from './use-token';
 
 export function CustomApolloProvider({ children }: { children: React.ReactNode }) {
   const { token } = useToken();
-  const tokenRef = useRef<string>();
+  const tokenRef = useRef<string>('');
 
   // Whenever the token changes, the component re-renders, thus updating the ref.
   tokenRef.current = token;
