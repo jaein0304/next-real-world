@@ -1,4 +1,4 @@
-import { Article, Prisma } from '@prisma/client';
+import { Article, Prisma } from '../../../generated/prisma/client';
 import { AuthenticationError, UserInputError } from 'apollo-server-micro';
 import { arg, extendType, nonNull, stringArg } from 'nexus';
 import { articleInputSchema } from '../../validation/schema';

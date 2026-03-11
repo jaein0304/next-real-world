@@ -18,6 +18,13 @@ const nextConfig = {
     ],
   },
   webpack: (config, { webpack }) => {
+    // Prisma 7 generates ESM with .js extensions; resolve .ts files in generated/prisma
+    config.resolve = config.resolve || {};
+    config.resolve.extensionAlias = {
+      ...config.resolve.extensionAlias,
+      '.js': ['.ts', '.js'],
+    };
+
     config.plugins = config.plugins || [];
     config.plugins.push(
       new webpack.ContextReplacementPlugin(

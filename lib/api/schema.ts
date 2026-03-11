@@ -50,7 +50,7 @@ export const schema = makeSchema({
   sourceTypes: {
     modules: [
       {
-        module: '@prisma/client',
+        module: path.join(process.cwd(), 'generated', 'prisma', 'client.ts'),
         alias: 'prisma',
       },
     ],

@@ -3,6 +3,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { execSync } from 'child_process'
 import path from 'path'
 import fs from 'fs'
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 
 const TEST_DB = path.resolve(__dirname, '..', '..', '..', 'test.db')
 const DATABASE_URL = `file:${TEST_DB}`
@@ -13,16 +14,19 @@ beforeAll(async () => {
   // Clean up existing test DB
   if (fs.existsSync(TEST_DB)) fs.unlinkSync(TEST_DB)
 
-  // Push schema to SQLite (client already generated via prisma generate --schema=prisma/schema.test.prisma)
-  execSync('npx prisma db push --schema=prisma/schema.test.prisma --skip-generate', {
-    env: { ...process.env, DATABASE_URL },
+  // Push schema to SQLite
+  execSync(`npx prisma db push --schema=prisma/schema.test.prisma --url="${DATABASE_URL}" --force-reset`, {
+    env: { ...process.env, PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION: 'yes' },
     stdio: 'pipe',
   })
 
-  // Use require for node_modules path (avoids Vite resolution issues)
-  const testClientPath = path.resolve(__dirname, '..', '..', '..', 'node_modules', '.prisma', 'test-client')
-  const { PrismaClient } = require(testClientPath)
-  prisma = new PrismaClient({ datasources: { db: { url: DATABASE_URL } } })
+  // Use better-sqlite3 adapter with Prisma 7 test client
+  const testClientPath = path.resolve(__dirname, '..', '..', '..', 'node_modules', '.prisma', 'test-client', 'client.ts')
+
+  // Dynamic import for the generated TS client
+  const { PrismaClient } = await import(testClientPath)
+  const adapter = new PrismaBetterSqlite3({ url: TEST_DB })
+  prisma = new PrismaClient({ adapter })
 })
 
 afterAll(async () => {

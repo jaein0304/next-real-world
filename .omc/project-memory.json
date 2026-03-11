@@ -1,0 +1,273 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1773202580444,
+  "projectRoot": "/Users/admin/Desktop/next-real-world",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "15",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19",
+        "category": "frontend"
+      },
+      {
+        "name": "@playwright/test",
+        "version": "1.58.2",
+        "category": "testing"
+      },
+      {
+        "name": "vitest",
+        "version": "4.0.18",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "yarn",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "yarn build",
+    "testCommand": "yarn test",
+    "lintCommand": "yarn lint",
+    "devCommand": "yarn dev",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint",
+      "deploy": "sls --debug",
+      "db:migrate": "prisma migrate dev",
+      "generate:prisma": "prisma generate",
+      "generate:nexus": "ts-node --transpile-only lib/api/schema",
+      "generate:jwk": "node gen-jwk",
+      "generate:graphql": "graphql-codegen --config .graphql-codegen.yml",
+      "build:anl": "ANALYZE=true next build",
+      "test": "vitest",
+      "test:run": "vitest run",
+      "test:coverage": "vitest run --coverage",
+      "test:e2e": "playwright test",
+      "test:e2e:ui": "playwright test --ui"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "app",
+      "components",
+      "docs",
+      "lib",
+      "pages",
+      "public",
+      "tests"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "app": {
+      "path": "app",
+      "purpose": "Application code",
+      "fileCount": 3,
+      "lastAccessed": 1773202580240,
+      "keyFiles": [
+        "layout.tsx",
+        "not-found.tsx",
+        "providers.tsx"
+      ]
+    },
+    "components": {
+      "path": "components",
+      "purpose": "UI components",
+      "fileCount": 0,
+      "lastAccessed": 1773202580368,
+      "keyFiles": []
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 1,
+      "lastAccessed": 1773202580372,
+      "keyFiles": [
+        "vibe-coding-transition-plan.md"
+      ]
+    },
+    "e2e": {
+      "path": "e2e",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1773202580374,
+      "keyFiles": [
+        "navigation.spec.ts"
+      ]
+    },
+    "generated": {
+      "path": "generated",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1773202580378,
+      "keyFiles": [
+        "graphql.ts",
+        "nexus.ts",
+        "schema.graphql"
+      ]
+    },
+    "lib": {
+      "path": "lib",
+      "purpose": "Library code",
+      "fileCount": 1,
+      "lastAccessed": 1773202580378,
+      "keyFiles": [
+        "constants.ts"
+      ]
+    },
+    "openspec": {
+      "path": "openspec",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1773202580379,
+      "keyFiles": [
+        "config.yaml"
+      ]
+    },
+    "pages": {
+      "path": "pages",
+      "purpose": "Page components",
+      "fileCount": 6,
+      "lastAccessed": 1773202580380,
+      "keyFiles": [
+        "404.tsx",
+        "_app.tsx",
+        "index.tsx",
+        "login.tsx",
+        "register.tsx"
+      ]
+    },
+    "prisma": {
+      "path": "prisma",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1773202580381,
+      "keyFiles": [
+        "schema.prisma",
+        "schema.test.prisma"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 1,
+      "lastAccessed": 1773202580381,
+      "keyFiles": [
+        "favicon.ico"
+      ]
+    },
+    "styles": {
+      "path": "styles",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1773202580382,
+      "keyFiles": [
+        "global.css"
+      ]
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 2,
+      "lastAccessed": 1773202580382,
+      "keyFiles": [
+        "setup-db.ts",
+        "setup.ts"
+      ]
+    },
+    "lib/api": {
+      "path": "lib/api",
+      "purpose": "API routes",
+      "fileCount": 4,
+      "lastAccessed": 1773202580387,
+      "keyFiles": [
+        "context.ts",
+        "prisma.ts",
+        "schema.ts"
+      ]
+    },
+    "lib/schemas": {
+      "path": "lib/schemas",
+      "purpose": "Schema definitions",
+      "fileCount": 7,
+      "lastAccessed": 1773202580388,
+      "keyFiles": [
+        "article-list.graphql",
+        "article.graphql",
+        "auth.graphql"
+      ]
+    },
+    "lib/utils": {
+      "path": "lib/utils",
+      "purpose": "Utility functions",
+      "fileCount": 6,
+      "lastAccessed": 1773202580389,
+      "keyFiles": [
+        "check-literal.ts",
+        "compose.tsx",
+        "date-format.ts"
+      ]
+    },
+    "pages/api": {
+      "path": "pages/api",
+      "purpose": "API routes",
+      "fileCount": 1,
+      "lastAccessed": 1773202580391,
+      "keyFiles": [
+        "index.ts"
+      ]
+    },
+    "tests/mocks": {
+      "path": "tests/mocks",
+      "purpose": "Mock data",
+      "fileCount": 1,
+      "lastAccessed": 1773202580395,
+      "keyFiles": [
+        "prisma.ts"
+      ]
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

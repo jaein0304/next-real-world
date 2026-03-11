@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../../../generated/prisma/client';
 import { extendType, intArg, nonNull, stringArg } from 'nexus';
 import { Context } from '../context';
 
@@ -132,11 +132,9 @@ const articleQueryFilter = (query: any): Prisma.ArticleWhereInput => ({
   ] as Prisma.ArticleWhereInput[],
 });
 
-const feedQueryFilter = (userId: number) => {
-  return Prisma.validator<Prisma.ArticleWhereInput>()({
-    del: false,
-    author: { followedBy: { some: { followerId: userId } } },
-  });
-};
+const feedQueryFilter = (userId: number): Prisma.ArticleWhereInput => ({
+  del: false,
+  author: { followedBy: { some: { followerId: userId } } },
+});
 
 export default ArticleQuery;
