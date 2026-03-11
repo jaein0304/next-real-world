@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { DEFAULT_AVATAR, DEFAULT_AVATAR_PLACEHOLDER } from '../../lib/constants';
 
 interface CustomImageProps {

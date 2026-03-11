@@ -9,7 +9,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['s2.loli.net', 'i.imgur.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 's2.loli.net' },
+      { protocol: 'https', hostname: 'i.imgur.com' },
+    ],
   },
   webpack: (config, { webpack }) => {
     config.plugins = config.plugins || [];

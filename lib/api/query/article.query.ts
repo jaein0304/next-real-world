@@ -118,21 +118,19 @@ const ArticleQuery = extendType({
   },
 });
 
-const articleQueryFilter = (query: any) => {
-  return Prisma.validator<Prisma.ArticleWhereInput>()({
-    AND: [
-      { del: false },
-      { author: { username: query?.author } },
-      { tags: { some: query?.tag && { tag: { name: query.tag } } } },
-      {
-        favoritedBy: {
-          // this "some" operator somehow could not work with the nested undefined value in an "AND" array
-          some: query?.favorited && { favoritedBy: { username: query.favorited } },
-        },
+const articleQueryFilter = (query: any): Prisma.ArticleWhereInput => ({
+  AND: [
+    { del: false },
+    { author: { username: query?.author } },
+    { tags: { some: query?.tag && { tag: { name: query.tag } } } },
+    {
+      favoritedBy: {
+        // this "some" operator somehow could not work with the nested undefined value in an "AND" array
+        some: query?.favorited && { favoritedBy: { username: query.favorited } },
       },
-    ],
-  });
-};
+    },
+  ] as Prisma.ArticleWhereInput[],
+});
 
 const feedQueryFilter = (userId: number) => {
   return Prisma.validator<Prisma.ArticleWhereInput>()({

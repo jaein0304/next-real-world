@@ -16,7 +16,7 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "vitest.config.ts", "playwright.config.ts", "tests", "e2e"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"

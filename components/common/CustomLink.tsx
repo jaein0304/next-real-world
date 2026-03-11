@@ -73,8 +73,11 @@ export default function CustomLink({
   const { asPath } = useRouter();
   const active = decodeURIComponent(asPath) === decodeURIComponent(href as string);
   return (
-    <Link href={href} {...props}>
-      <a className={joinLinkStyles({ mode, underlined, className }, active)}>{children}</a>
+    <Link
+      href={href}
+      {...props}
+      className={joinLinkStyles({ mode, underlined, className }, active)}>
+      {children}
     </Link>
   );
 }

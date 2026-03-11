@@ -17,10 +17,15 @@ export default function NavLink({ href, as, className, hoverClass, activeClass, 
   const active = decodeURIComponent(asPath) === decodeURIComponent(href as string);
   const ariaCurrent = active ? 'page' : undefined;
   return (
-    <Link href={href} as={as} passHref shallow={shallow}>
-      <a className={`${className} ${hoverClass} ${active ? activeClass : ''}`} aria-current={ariaCurrent}>
-        {children}
-      </a>
+    <Link
+      href={href}
+      as={as}
+      shallow={shallow}
+      className={`${className} ${hoverClass} ${active ? activeClass : ''}`}
+      aria-current={ariaCurrent}>
+
+      {children}
+
     </Link>
   );
 }

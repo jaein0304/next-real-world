@@ -40,11 +40,11 @@
 
 ## 6. Next.js 14 마이그레이션 (Phase 4-1)
 
-- [ ] 6.1 feature/nextjs-14 브랜치 생성
-- [ ] 6.2 Next.js 14, React 18.3, TypeScript 5.9로 패키지 업그레이드
-- [ ] 6.3 npx @next/codemod upgrade 실행 — next/image, next/link 등 자동 변환
-- [ ] 6.4 ESLint 설정 업데이트 (Next.js 14 호환)
-- [ ] 6.5 빌드 확인 (yarn build) 및 전체 테스트 실행
+- [x] 6.1 feature/nextjs-14 브랜치 생성
+- [x] 6.2 Next.js 14, React 18.3, TypeScript 5.9로 패키지 업그레이드
+- [x] 6.3 npx @next/codemod upgrade 실행 — next/image, next/link 등 자동 변환
+- [x] 6.4 ESLint 설정 업데이트 (Next.js 14 호환)
+- [x] 6.5 빌드 확인 (yarn build) 및 전체 테스트 실행
 - [ ] 6.6 수동 스모크 테스트 — 주요 페이지(홈, 로그인, 글 작성, 프로필) 확인
 - [ ] 6.7 PR 생성 및 CI 통과 확인 후 머지
 
